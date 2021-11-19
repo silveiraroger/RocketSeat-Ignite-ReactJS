@@ -1,0 +1,47 @@
+-- Ambiente de desenvolvimento
+https://www.notion.so/Ambiente-de-desenvolvimento-Trilha-ReactJS-e7a377d183134647a177b6a34785f8c3
+
+-- Inicializar o repositório
+yarn init -y
+
+-- Instalando o React
+yarn add react
+yarn add react-dom
+
+-- Instalando o Babel
+yarn add @babel/core @babel/cli @babel/preset-env -D
+yarn add @babel/preset-react -D
+yarn add babel-loader -D
+
+-- Instalando o Webpack
+yarn add webpack webpack-cli -D
+yarn add html-webpack-plugin -D
+yarn add webpack-dev-server -D
+
+-- Instalando o ENV
+yarn add cross-env -D
+
+-- Loaders para CSS
+yarn add style-loader css-loader -D
+
+-- Loaders para SASS
+yarn add node-sass -D
+yarn add sass-loader -D
+
+-- Fast Refresh Webpack Plugin
+yarn add -D @pmmmwh/react-refresh-webpack-plugin react-refresh
+
+-- Instalando o Typescript 
+yarn add typescript -D
+yarn tsc --init (cria o tsconfig.js)
+
+-- Instalando o Preset do Typescript no Babel
+yarn add @babel/preset-typescript -D
+
+-- Instalando os tipos para trabalhar com Typescript
+yarn add @types/react -D
+yarn add @types/react-dom -D
+
+-----------------------------------------------------------------------------
+-- Create React App
+ yarn create react-app [nome-aplicacao] --template typescript
