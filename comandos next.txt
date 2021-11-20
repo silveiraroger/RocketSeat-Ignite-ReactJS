@@ -1,0 +1,8 @@
+-- Criando o projeto Next
+yarn create next-app [nome-do-projeto]
+
+-- Instalando o typescript
+yarn add typescript @types/react @types/node -D
+
+-- Instalando o sass
+yarn add sass
