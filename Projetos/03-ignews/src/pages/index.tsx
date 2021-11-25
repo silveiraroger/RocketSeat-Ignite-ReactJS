@@ -40,7 +40,7 @@ interface HomeProps {
 //Faz a requisição toda vez que é chamado
 //export const getServerSideProps: GetServerSideProps = async () => {
 
-//
+//Salva o HTLM estático por um determinado tempo
 export const getStaticProps: GetStaticProps = async () => {
   const price = await stripe.prices.retrieve('price_1JyahBJqzDx6nAVIqJKk7WZ0', {
     expand: ['product']
@@ -58,6 +58,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       product
     },
-    revalidate: 60 * 60 * 24 //24 horas (tempo em segundos)
+    revalidate: 60 * 60 * 24 //24 horas (tempo em segundos) utilizado apenas no getStaticProps
   }
 }
