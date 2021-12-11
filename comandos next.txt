@@ -6,3 +6,6 @@ yarn add typescript @types/react @types/node -D
 
 -- Instalando o sass
 yarn add sass
+
+-- Instalando o Chakra
+yarn add @chakra-ui/react @chakra-ui/core @emotion/react @emotion/styled framer-motion
