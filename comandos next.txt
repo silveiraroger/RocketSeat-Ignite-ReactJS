@@ -9,3 +9,10 @@ yarn add sass
 
 -- Instalando o Chakra
 yarn add @chakra-ui/react @chakra-ui/core @emotion/react @emotion/styled framer-motion
+
+-- Instalando o react hook form
+yarn add react-hook-form
+
+-- Instalando o yup
+yarn add yup
+yarn add @hookform/resolvers

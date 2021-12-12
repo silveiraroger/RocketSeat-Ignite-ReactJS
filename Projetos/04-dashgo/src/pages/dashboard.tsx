@@ -70,7 +70,7 @@ export default function Dashboard() {
 
         <SimpleGrid flex="1" gap="4" minChildWidth="320px" alignItems="flex-start">
           <Box
-            padding="8"
+            padding={["6", "8"]}
             background="gray.800"
             borderRadius={8}
             paddingBottom="4"
@@ -80,7 +80,7 @@ export default function Dashboard() {
           </Box>
 
           <Box
-            padding="8"
+            padding={["6", "8"]}
             background="gray.800"
             borderRadius={8}
             paddingBottom="4"
