@@ -6,6 +6,10 @@ import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
+import { useMutation } from "react-query";
+import { api } from "../../services/api";
+import { queryClient } from "../../services/queryClient";
+import { useRouter } from "next/router";
 
 type UserCreateFormData = {
   name: string;
@@ -22,14 +26,32 @@ const userCreateFormSchema = yup.object().shape({
 })
 
 export default function UserCreate() {
-  const { register, handleSubmit, formState } = useForm();
-  const { errors } = formState;
+  const router = useRouter();
+
+  const createUser = useMutation(async (user: UserCreateFormData) => {
+    const response = await api.post('users', {
+      user: {
+        ...user,
+        created_at: new Date()
+      }
+    })
+
+    return response.data.user;
+  }, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('users')
+    }
+  });
+
+  const { register, handleSubmit, formState } = useForm({
+    resolver: yupResolver(userCreateFormSchema)
+  });
+  const { errors, isSubmitting } = formState;
 
   const handleCreateUser: SubmitHandler<UserCreateFormData> = async (values, event) => {
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await createUser.mutateAsync(values);
 
-    console.log(event);
-    console.log(values);
+    router.push('/users');
   }
 
   return (
@@ -58,8 +80,8 @@ export default function UserCreate() {
             </SimpleGrid>
 
             <SimpleGrid minChildWidth="240px" spacing={["6", "8"]} width="100%">
-              <Input name="password" type="password" label="Senha" error={errors.password} />
-              <Input name="passwordConfirmation" type="password" label="Confirmação da senha" error={errors.passwordConfirmation} />
+              <Input name="password" type="password" label="Senha" {...register("password")} error={errors.password} />
+              <Input name="passwordConfirmation" type="password" {...register("passwordConfirmation")} label="Confirmação da senha" error={errors.passwordConfirmation} />
             </SimpleGrid>
           </VStack>
 
@@ -71,7 +93,7 @@ export default function UserCreate() {
               <Button
                 type="submit"
                 colorScheme="pink"
-                isLoading={formState.isSubmitting}
+                isLoading={isSubmitting}
               >
                 Salvar
               </Button>
